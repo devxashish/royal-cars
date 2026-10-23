@@ -1,0 +1,896 @@
+/* Hallmark · macrostructure: Shadcn Floating Nav & Warm Vintage Kahani Cafe Hybrid
+ * Tokens: Rich Crimson Wine (#9b1c24), Warm Cream Alabaster (#faf8f5), Carbon Ink (#18181b), Slate (#64748b)
+ * Borders: 1px subtle secondary hairline border, rounded-2xl floating card containers
+ */
+
+:root {
+  /* Shadcn Dark & Kahani Warm Fusion */
+  --background: #090a0d;              /* Deep Shadcn Zinc Carbon */
+  --foreground: #f8fafc;              /* Crisp White Foregorund */
+  
+  /* Signature Brand Crimson Wine Accent (inspired by Coffee with Kahani warmth) */
+  --primary: #c22933;                 /* Royal Crimson Red */
+  --primary-foreground: #ffffff;
+  --primary-hover: #dc2626;
+  --primary-glow: rgba(194, 41, 51, 0.28);
+
+  /* Shadcn Secondary & Card Surfaces */
+  --card: #12151b;                    /* Elevated Floating Card */
+  --card-foreground: #f8fafc;
+  --card-border: rgba(255, 255, 255, 0.09);
+  --card-border-hover: rgba(194, 41, 51, 0.45);
+  
+  --secondary: #1e222d;
+  --secondary-foreground: #f8fafc;
+  
+  --muted: #181c24;
+  --muted-foreground: #94a3b8;        /* Soft Slate */
+  --border: rgba(255, 255, 255, 0.08);
+
+  /* Gold & WhatsApp Accent Accents */
+  --amber-gold: #eab308;
+  --whatsapp: #25d366;
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Space Grotesk', monospace;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  --shadow-float: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 25px var(--primary-glow);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle Micro Dot Pattern (like Coffee with Kahani's tactile background) */
+.bg-dot-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.22;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Ambient Radial Glow */
+.ambient-glow {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 400px;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 1. Floating Shadcn Navbar */
+.shadcn-floating-header {
+  position: sticky;
+  top: 18px;
+  left: 0;
+  width: 90%;
+  max-width: 1180px;
+  margin: 0 auto;
+  z-index: 1000;
+  background: rgba(18, 21, 27, 0.85);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.brand-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.brand-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, #991b1b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.brand-badge {
+  font-family: var(--font-mono);
+  font-size: 0.60rem;
+  color: #f87171;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.nav-menu-list {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  list-style: none;
+}
+
+.nav-link {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  transition: color 0.18s ease;
+}
+
+.nav-link:hover {
+  color: var(--foreground);
+}
+
+.nav-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-shadcn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 14px var(--primary-glow);
+  transition: all 0.2s ease;
+}
+
+.btn-shadcn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+
+.btn-shadcn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  font-weight: 600;
+  font-size: 0.86rem;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-shadcn-secondary:hover {
+  background-color: #2a3140;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* 2. Hero Section (Shadcn SaaS Style Headline with Marquee and Big Visual) */
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 20px 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-pill-announcement {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(194, 41, 51, 0.12);
+  border: 1px solid rgba(194, 41, 51, 0.35);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.80rem;
+  color: #fca5a5;
+  margin-bottom: 24px;
+}
+
+.pill-tag {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.hero-main-title {
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, #f87171 0%, #ef4444 50%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  color: var(--muted-foreground);
+  max-width: 680px;
+  margin: 0 auto 32px auto;
+  line-height: 1.6;
+}
+
+.hero-cta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+/* Big Hero Showcase Frame (like Shadcn template screenshot) */
+.hero-showcase-frame {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  padding: 10px;
+  background: linear-gradient(to bottom, rgba(194, 41, 51, 0.35) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+
+.hero-showcase-inner {
+  border-radius: calc(var(--radius-xl) - 4px);
+  overflow: hidden;
+  height: 480px;
+  background: #000;
+  position: relative;
+}
+
+.hero-showcase-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(18, 21, 27, 0.90);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+}
+
+/* 3. Marquee Trust Bar (Shadcn SaaS Sponsor Pattern) */
+.marquee-wrapper {
+  max-width: 1100px;
+  margin: 60px auto 20px auto;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  white-space: nowrap;
+}
+
+.marquee-badge i {
+  color: var(--primary);
+}
+
+/* 4. Section Structure */
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-badge-center {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-label {
+  font-size: 0.80rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #f87171;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--muted-foreground);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* 5. Fleet Discovery Grid (Shadcn Numbered & Feature Cards) */
+.fleet-filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  color: var(--muted-foreground);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-chip.active, .filter-chip:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.fleet-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.shadcn-car-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  transition: all 0.25s ease;
+}
+
+.shadcn-car-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--card-border-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px var(--primary-glow);
+}
+
+.card-img-wrapper {
+  position: relative;
+  height: 220px;
+  width: 100%;
+  background: #000;
+}
+
+.card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.shadcn-car-card:hover .card-img-wrapper img {
+  transform: scale(1.04);
+}
+
+.card-badge-top {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(18, 21, 27, 0.90);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fca5a5;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.card-body-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 12px;
+}
+
+.car-title-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.car-specs-pill-bar {
+  display: flex;
+  gap: 12px;
+  font-size: 0.78rem;
+  color: var(--muted-foreground);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.car-desc-text {
+  font-size: 0.84rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+.card-action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.card-price-value {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.card-price-unit {
+  font-size: 0.72rem;
+  color: var(--muted-foreground);
+  display: block;
+}
+
+/* 6. Pricing Calculator (Shadcn Pro Plan Box Structure) */
+.calc-unified-box {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  box-shadow: var(--shadow-card);
+}
+
+.calc-control-group {
+  margin-bottom: 20px;
+}
+
+.calc-control-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 8px;
+}
+
+.calc-input-select, .calc-input-date {
+  width: 100%;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--foreground);
+  padding: 12px 14px;
+  font-size: 0.94rem;
+  font-family: inherit;
+}
+
+.calc-input-select:focus, .calc-input-date:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.slider-styled {
+  width: 100%;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.toggle-option-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  background: var(--background);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: border-color 0.2s ease;
+}
+
+.toggle-option-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggle-checkbox-visual {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  font-weight: 700;
+}
+
+.toggle-option-card.active .toggle-checkbox-visual {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Calculator Receipt Summary Column */
+.calc-summary-column {
+  background: #0d1017;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.summary-header-block h3 {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.summary-car-pill {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: #f87171;
+  text-transform: uppercase;
+}
+
+.summary-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.summary-line-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.90rem;
+  color: var(--muted-foreground);
+}
+
+.summary-line-item.discount-line {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.summary-total-hero {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--foreground);
+  line-height: 1;
+}
+
+/* 7. Benefits / How It Works (Numbered Cards with 01, 02...) */
+.numbered-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.numbered-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.numbered-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.card-numeral-watermark {
+  font-family: var(--font-mono);
+  font-size: 3rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.08);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.card-feature-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-feature-text {
+  font-size: 0.86rem;
+  color: var(--muted-foreground);
+  line-height: 1.5;
+}
+
+/* 8. Trust & Local Shaikpet Hub */
+.hub-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.hub-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+}
+
+.hub-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.hub-icon-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+/* 9. FAQ Accordions (Shadcn Accordion Pattern) */
+.faq-box-container {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-shadcn-item {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-trigger-btn {
+  width: 100%;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.02rem;
+  color: var(--foreground);
+  text-align: left;
+}
+
+.faq-trigger-btn:hover {
+  color: #f87171;
+}
+
+.faq-content-pane {
+  display: none;
+  padding: 0 20px 18px 20px;
+  font-size: 0.90rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+.faq-shadcn-item.active .faq-content-pane {
+  display: block;
+}
+
+/* 10. Footer */
+.shadcn-footer {
+  border-top: 1px solid var(--border);
+  padding: 60px 20px 30px 20px;
+  margin-top: 40px;
+  background: #08090c;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-inner-max {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer-bottom-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.80rem;
+  color: var(--muted-foreground);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Mobile Action Dock */
+.mobile-action-dock {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(18, 21, 27, 0.96);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  z-index: 1001;
+  gap: 12px;
+}
+
+.dock-action-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  min-height: 48px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .numbered-benefits-grid { grid-template-columns: repeat(2, 1fr); }
+  .calc-unified-box { grid-template-columns: 1fr; }
+  .hub-split-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav-menu-list, .nav-actions-group .btn-shadcn-secondary { display: none; }
+  .hero-showcase-inner { height: 240px; }
+  .fleet-grid-3col { grid-template-columns: 1fr; }
+  .card-img-wrapper { height: 180px; }
+  .numbered-benefits-grid { grid-template-columns: 1fr; }
+  .mobile-action-dock { display: flex; }
+  body { padding-bottom: 76px; }
+}
+
+/* Mobile Fleet Card Primitives */
+.mobile-car-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-card-img {
+  position: relative;
+  width: 100%;
+  height: 165px;
+  background: #000;
+  overflow: hidden;
+}
+
+.mobile-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

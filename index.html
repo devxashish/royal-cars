@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Cars — Premium Self-Drive Car Rental Hyderabad</title>
+  <meta name="description" content="Royal Cars provides premium self-drive car rentals in Shaikpet, Hyderabad. Discover executive sedans, luxury SUVs, and sanitized city cars with transparent daily tariffs and 24-hour dispatch.">
+  <link rel="canonical" href="http://localhost:4000/index.html">
+
+  <!-- Immediate Inline Auto-Detection for PC / Mobile Devices -->
+  <script>
+    (function() {
+      var isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      var isMobileWidth = window.innerWidth <= 768;
+      var urlParams = new URLSearchParams(window.location.search);
+      var forceDesktop = urlParams.get('view') === 'desktop' || sessionStorage.getItem('force_desktop') === 'true';
+
+      if ((isMobileUA || isMobileWidth) && !forceDesktop) {
+        window.location.replace('mobile.html');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans + Space Grotesk + Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Dot Pattern & Ambient Glow -->
+  <div class="bg-dot-pattern" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- 1. Floating Shadcn Navbar (like shadcn-saas-landing-v1) -->
+  <header class="shadcn-floating-header">
+    <a href="/" class="brand-pill">
+      <div class="brand-icon-box">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m7 6 5 5 5-5"></path><path d="m7 13 5 5 5-5"></path>
+        </svg>
+      </div>
+      <div class="brand-text-block">
+        <span class="brand-title">Royal Cars</span>
+        <span class="brand-badge">Shaikpet • Hyderabad</span>
+      </div>
+    </a>
+
+    <nav aria-label="Main Navigation">
+      <ul class="nav-menu-list">
+        <li><a href="#fleet" class="nav-link">Fleet</a></li>
+        <li><a href="#calculator" class="nav-link">Tariff Calculator</a></li>
+        <li><a href="#benefits" class="nav-link">Why Royal</a></li>
+        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+        <li><a href="#location" class="nav-link">Shaikpet Hub</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions-group">
+      <a href="tel:+918801256038" class="btn-shadcn-secondary">
+        <i data-lucide="phone"></i> +91 88012 56038
+      </a>
+      <a href="https://wa.me/918801256038?text=Hello%20Royal%20Cars%20Hyderabad%2C%20I%20would%20like%20to%20check%20car%20rental%20availability." class="btn-shadcn-primary" target="_blank" rel="noopener">
+        <i data-lucide="message-square"></i> WhatsApp Us
+      </a>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section (Shadcn SaaS Clean Big Typography & Framing) -->
+  <section class="hero-container">
+    <div class="hero-pill-announcement">
+      <span class="pill-tag">New Fleet</span>
+      <span>2026 Premium Self-Drive Fleet in Shaikpet is Live!</span>
+    </div>
+
+    <h1 class="hero-main-title">
+      Experience the <span class="text-gradient-primary">Royal Freedom</span><br>of Self-Drive Motoring
+    </h1>
+
+    <p class="hero-description">
+      Independent car rentals across Hyderabad with complete peace of mind. Transparent daily tariffs, pristine sanitized vehicles, and instant WhatsApp booking confirmation.
+    </p>
+
+    <div class="hero-cta-bar">
+      <a href="#calculator" class="btn-shadcn-primary" style="padding: 12px 26px; font-size: 0.95rem;">
+        Calculate Rental Tariff <i data-lucide="arrow-right"></i>
+      </a>
+      <a href="#fleet" class="btn-shadcn-secondary" style="padding: 12px 22px; font-size: 0.95rem;">
+        Explore Discovery Fleet
+      </a>
+    </div>
+
+    <!-- Big Showcase Card (like the dashboard preview in shadcn-saas-landing-v1) -->
+    <div class="hero-showcase-frame">
+      <div class="hero-showcase-inner">
+        <img src="assets/hero_suv.jpg" alt="Royal Cars Luxury Self Drive SUV Hyderabad" fetchpriority="high" />
+        <div class="hero-overlay-tag">
+          <span style="color: #4ade80; display: flex; align-items: center; gap: 6px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></span> 24/7 Available
+          </span>
+          <span>Opposite D-Mart, Shaikpet</span>
+          <span style="color: #fca5a5;">4.4 ★ (~610 Ratings)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Marquee Trust Bar (Shadcn Sponsor Banner Pattern) -->
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <div class="marquee-badge"><i data-lucide="shield-check"></i> 100% Sanitized Fleet Handover</div>
+      <div class="marquee-badge"><i data-lucide="map-pin"></i> Shaikpet • Jubilee Hills • Manikonda</div>
+      <div class="marquee-badge"><i data-lucide="clock"></i> 24-Hour Roadside Support</div>
+      <div class="marquee-badge"><i data-lucide="star"></i> 4.4 Google Star Rating</div>
+      <div class="marquee-badge"><i data-lucide="zap"></i> Instant WhatsApp Dispatch</div>
+      <div class="marquee-badge"><i data-lucide="badge-percent"></i> Zero Hidden Security Surges</div>
+
+      <!-- Duplicate for infinite seamless scroll -->
+      <div class="marquee-badge"><i data-lucide="shield-check"></i> 100% Sanitized Fleet Handover</div>
+      <div class="marquee-badge"><i data-lucide="map-pin"></i> Shaikpet • Jubilee Hills • Manikonda</div>
+      <div class="marquee-badge"><i data-lucide="clock"></i> 24-Hour Roadside Support</div>
+      <div class="marquee-badge"><i data-lucide="star"></i> 4.4 Google Star Rating</div>
+      <div class="marquee-badge"><i data-lucide="zap"></i> Instant WhatsApp Dispatch</div>
+      <div class="marquee-badge"><i data-lucide="badge-percent"></i> Zero Hidden Security Surges</div>
+    </div>
+  </div>
+
+  <!-- 4. Fleet Discovery Grid (Feature Cards) -->
+  <section id="fleet" class="content-section">
+    <div class="section-badge-center">
+      <span class="section-label">Fleet Showcase</span>
+      <h2 class="section-title">The Discovery Fleet</h2>
+      <p class="section-desc">Hand-picked, well-maintained vehicles tailored for city commuting or grand highway journeys.</p>
+    </div>
+
+    <div class="fleet-filter-row">
+      <button class="filter-chip active" data-category="all">All Vehicles</button>
+      <button class="filter-chip" data-category="Hatchback">Hatchbacks</button>
+      <button class="filter-chip" data-category="Sedan">Sedans</button>
+      <button class="filter-chip" data-category="SUV">SUVs</button>
+      <button class="filter-chip" data-category="Premium">Luxury & VIP</button>
+    </div>
+
+    <div id="fleet-cards-grid" class="fleet-grid-3col"></div>
+    <p style="font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted-foreground); text-align: center; margin-top: 20px;">
+      *Demo fleet preview — confirm real-time availability with Royal Cars.
+    </p>
+  </section>
+
+  <!-- 5. Interactive Pricing Calculator (Shadcn Pricing Plan Pattern) -->
+  <section id="calculator" class="content-section">
+    <div class="section-badge-center">
+      <span class="section-label">Transparent Tariffs</span>
+      <h2 class="section-title">Estimate Your Rental Cost</h2>
+      <p class="section-desc">Choose your model, slide your trip duration, and see automatic multi-day discounts in real time.</p>
+    </div>
+
+    <div class="calc-unified-box">
+      <!-- Controls Column -->
+      <div class="calc-form-column">
+        <div class="calc-control-group">
+          <label class="calc-control-label" for="calc-car-select">
+            <span>Select Vehicle Model</span>
+            <span style="color: #f87171;">Step 01</span>
+          </label>
+          <select id="calc-car-select" class="calc-input-select"></select>
+        </div>
+
+        <div class="calc-control-group">
+          <div class="calc-control-label">
+            <span>Rental Duration</span>
+            <span id="calc-days-display" style="color: #fff; font-weight: 700;">3 Days</span>
+          </div>
+          <input type="range" id="calc-days-slider" class="slider-styled" min="1" max="30" value="3" />
+          <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted-foreground); font-family: var(--font-mono); margin-top: 6px;">
+            <span>1 Day</span>
+            <span>7 Days (12% Off)</span>
+            <span>15+ Days (20% Off)</span>
+            <span>30 Days</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px;">
+          <div>
+            <label class="calc-control-label" for="calc-pickup-date">Pickup Date</label>
+            <input type="date" id="calc-pickup-date" class="calc-input-date" />
+          </div>
+          <div>
+            <label class="calc-control-label" for="calc-return-date">Return Date</label>
+            <input type="date" id="calc-return-date" class="calc-input-date" />
+          </div>
+        </div>
+
+        <div>
+          <label class="calc-control-label">Trip Add-ons</label>
+          
+          <div class="toggle-option-card" id="extra-doorstep">
+            <div>
+              <div style="font-weight: 600; font-size: 0.90rem;">Doorstep City Delivery</div>
+              <div style="font-size: 0.76rem; color: var(--muted-foreground);">Handover and pickup at your home or hotel (+₹600)</div>
+            </div>
+            <div class="toggle-checkbox-visual">✓</div>
+          </div>
+
+          <div class="toggle-option-card" id="extra-zerodep">
+            <div>
+              <div style="font-weight: 600; font-size: 0.90rem;">Zero-Dep Damage Waiver</div>
+              <div style="font-size: 0.76rem; color: var(--muted-foreground);">Coverage for minor accidental road scratches (+₹350/day)</div>
+            </div>
+            <div class="toggle-checkbox-visual">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Receipt Summary Column -->
+      <div class="calc-summary-column">
+        <div>
+          <div class="summary-header-block">
+            <span class="summary-car-pill" id="receipt-car-category">SUV • 5 Seater</span>
+            <h3 id="receipt-car-name">Range Rover Sport & Creta SX</h3>
+          </div>
+
+          <div class="summary-breakdown-list">
+            <div class="summary-line-item">
+              <span>Base Daily Tariff</span>
+              <span id="receipt-rate-breakdown" style="font-family: var(--font-mono); color: #fff;">₹4,800 × 3 Days</span>
+            </div>
+            <div class="summary-line-item discount-line" id="receipt-discount-row" style="display: none;">
+              <span>Multi-Day Discount</span>
+              <span id="receipt-discount-val">-₹0</span>
+            </div>
+            <div class="summary-line-item">
+              <span>Included Mileage</span>
+              <span id="receipt-km-val" style="font-family: var(--font-mono); color: #fff;">900 KM (300 KM/day)</span>
+            </div>
+            <div class="summary-line-item" id="receipt-delivery-row" style="display: none;">
+              <span>City Delivery Fee</span>
+              <span style="font-family: var(--font-mono); color: #fff;">+₹600</span>
+            </div>
+            <div class="summary-line-item" id="receipt-zerodep-row" style="display: none;">
+              <span>Damage Waiver</span>
+              <span style="font-family: var(--font-mono); color: #fff;">+₹1,050</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="border-top: 1px solid var(--border); padding-top: 18px; margin-bottom: 18px;">
+            <div style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--muted-foreground); text-transform: uppercase;">Estimated Total</div>
+            <div class="summary-total-hero" id="receipt-total-val">₹13,680</div>
+            <div style="font-size: 0.72rem; color: var(--muted-foreground); margin-top: 6px;">
+              *Final price & refundable deposit confirmed by Royal Cars upon booking.
+            </div>
+          </div>
+
+          <a id="receipt-whatsapp-link" href="#" class="btn-shadcn-primary" style="width: 100%; justify-content: center; padding: 14px; font-size: 0.95rem; background: var(--whatsapp); color: #000; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);" target="_blank" rel="noopener">
+            <i data-lucide="message-circle"></i> Confirm Availability on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Numbered Step Sequence (Benefits pattern from shadcn-saas-landing-v1) -->
+  <section id="how-it-works" class="content-section">
+    <div class="section-badge-center">
+      <span class="section-label">Frictionless Process</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-desc">Rent a car in four simple, transparent steps without complicated paperwork.</p>
+    </div>
+
+    <div class="numbered-benefits-grid">
+      <div class="numbered-card">
+        <div>
+          <div class="card-numeral-watermark">01</div>
+          <h3 class="card-feature-title">Pick Your Vehicle</h3>
+          <p class="card-feature-text">Select from our range of hatchbacks, sedans, and SUVs according to your passenger & luggage needs.</p>
+        </div>
+      </div>
+
+      <div class="numbered-card">
+        <div>
+          <div class="card-numeral-watermark">02</div>
+          <h3 class="card-feature-title">Select Duration</h3>
+          <p class="card-feature-text">Plan from 1 to 30 days. Automated discounts apply directly for bookings of 3, 7, and 15+ days.</p>
+        </div>
+      </div>
+
+      <div class="numbered-card">
+        <div>
+          <div class="card-numeral-watermark">03</div>
+          <h3 class="card-feature-title">Instant Verification</h3>
+          <p class="card-feature-text">Send your Driving License and Aadhaar on WhatsApp for quick identity clearance and date confirmation.</p>
+        </div>
+      </div>
+
+      <div class="numbered-card">
+        <div>
+          <div class="card-numeral-watermark">04</div>
+          <h3 class="card-feature-title">Pick Up & Drive</h3>
+          <p class="card-feature-text">Collect keys at our Shaikpet hub (Opp. D-Mart) or enjoy prompt doorstep delivery across Hyderabad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Shaikpet Location & Trust Hub -->
+  <section id="location" class="content-section">
+    <div class="hub-split-grid">
+      <div class="hub-card">
+        <span class="section-label">Shaikpet Hub Location</span>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 16px;">Visit Us in Hyderabad</h2>
+        <p style="color: var(--muted-foreground); margin-bottom: 24px; font-size: 0.92rem;">
+          Conveniently situated opposite D-Mart in Shaikpet, easily accessible from Jubilee Hills Check Post, Tolichowki, and Manikonda.
+        </p>
+
+        <div class="hub-contact-row">
+          <div class="hub-icon-bubble"><i data-lucide="map-pin"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700;">Physical Address</h4>
+            <p style="font-size: 0.85rem; color: var(--muted-foreground);">Opposite D-Mart, Senore Colony / Aparna Senore Valley Villas, Shaikpet, Hyderabad 500096</p>
+          </div>
+        </div>
+
+        <div class="hub-contact-row">
+          <div class="hub-icon-bubble"><i data-lucide="clock"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700;">Working Hours</h4>
+            <p style="font-size: 0.85rem; color: #4ade80;">24-Hour Availability for vehicle dispatch and emergency support</p>
+          </div>
+        </div>
+
+        <div class="hub-contact-row">
+          <div class="hub-icon-bubble"><i data-lucide="phone"></i></div>
+          <div>
+            <h4 style="font-size: 0.95rem; font-weight: 700;">Direct Phone</h4>
+            <p><a href="tel:+918801256038" style="color: #fff; font-weight: 700;">+91 88012 56038</a></p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <a href="https://maps.app.goo.gl/QR3uc2cM3nbLBv82A" class="btn-shadcn-primary" target="_blank" rel="noopener">
+            <i data-lucide="navigation"></i> Open in Google Maps
+          </a>
+          <a href="tel:+918801256038" class="btn-shadcn-secondary">
+            <i data-lucide="phone-call"></i> Call Us
+          </a>
+        </div>
+      </div>
+
+      <!-- Reputation & Map -->
+      <div class="hub-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <span class="section-label">Public Reputation</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 12px;">Trusted by Hyderabad Drivers</h2>
+          <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px;">
+            <span style="font-size: 3.6rem; font-family: var(--font-mono); font-weight: 800; color: #fff;">4.4</span>
+            <div>
+              <div style="color: var(--amber-gold); font-size: 1.2rem;">★★★★★</div>
+              <span style="font-size: 0.82rem; color: var(--muted-foreground);">Based on ~610 public reviews</span>
+            </div>
+          </div>
+          <p style="color: var(--muted-foreground); font-size: 0.88rem; line-height: 1.6;">
+            Also rated <strong>4.1 ★ across 1,065 ratings</strong> on local business directories. Direct, honest car rental with no aggregator surprise penalties.
+          </p>
+        </div>
+
+        <div style="border-radius: var(--radius-md); overflow: hidden; height: 180px; margin-top: 20px; border: 1px solid var(--border);">
+          <iframe 
+            title="Royal Cars Shaikpet Map"
+            src="https://maps.google.com/maps?q=Opposite%20D-Mart,%20Shaikpet,%20Hyderabad,%20Telangana%20500096&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0; filter: grayscale(90%) invert(90%);" 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FAQ Accordion (Shadcn pattern) -->
+  <section id="faq" class="content-section">
+    <div class="section-badge-center">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-box-container">
+      <div class="faq-shadcn-item active">
+        <button class="faq-trigger-btn" type="button">
+          <span>What documents are required to rent a vehicle?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-content-pane">
+          Original Indian Driving License and Aadhaar / Passport for identity verification. Minimum driving vintage and terms are confirmed directly with Royal Cars at booking.
+        </div>
+      </div>
+
+      <div class="faq-shadcn-item">
+        <button class="faq-trigger-btn" type="button">
+          <span>Is fuel included in the daily rental rate?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-content-pane">
+          Fuel is customer-borne. Vehicles are provided on a level-to-level fuel policy (return the car with the same fuel indicator as handed over).
+        </div>
+      </div>
+
+      <div class="faq-shadcn-item">
+        <button class="faq-trigger-btn" type="button">
+          <span>Can I opt for doorstep delivery in Hyderabad?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-content-pane">
+          Yes! We offer doorstep drop-off and pickup across Hyderabad (including airport, hotel, or residence) for a flat ₹600 city delivery charge.
+        </div>
+      </div>
+
+      <div class="faq-shadcn-item">
+        <button class="faq-trigger-btn" type="button">
+          <span>Are there other Royal Cars in Hyderabad?</span>
+          <i data-lucide="chevron-down"></i>
+        </button>
+        <div class="faq-content-pane">
+          This website belongs specifically to Royal Cars in Shaikpet (Opposite D-Mart). Any other businesses in the city with similar names operate independently.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Footer -->
+  <footer class="shadcn-footer">
+    <div class="footer-inner-max">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div class="brand-pill">
+          <div class="brand-icon-box">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m7 6 5 5 5-5"></path><path d="m7 13 5 5 5-5"></path>
+            </svg>
+          </div>
+          <span class="brand-title">Royal Cars</span>
+        </div>
+        <div style="font-size: 0.88rem; color: var(--muted-foreground);">
+          Opposite D-Mart, Senore Colony / Aparna Senore Valley Villas, Shaikpet, Hyderabad 500096
+        </div>
+      </div>
+
+      <div class="footer-bottom-flex">
+        <span>© 2026 Royal Cars Hyderabad. All rights reserved.</span>
+        <span>Self-Drive Motoring Excellence</span>
+        <span>Shaikpet • Hyderabad</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/pricing.js"></script>
+  <script src="js/desktop.js"></script>
+</body>
+</html>

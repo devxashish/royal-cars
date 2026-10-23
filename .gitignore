@@ -1,0 +1,17 @@
+# Dependencies & Logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Archives & Temporary files
+*.zip
+*.rar
+*.tar.gz
+
+# System Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Royal Cars — Premium Self-Drive Car Rental Hyderabad</title>
+  <meta name="description" content="Royal Cars mobile portal for premium self-drive rentals in Shaikpet, Hyderabad. Fast fleet booking, tariff calculator, and direct WhatsApp dispatch.">
+  <link rel="canonical" href="http://localhost:4000/mobile.html">
+
+  <!-- Immediate Inline Auto-Detection for PC Users opening mobile.html -->
+  <script>
+    (function() {
+      var isDesktopWidth = window.innerWidth > 768;
+      var isDesktopUA = !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      var urlParams = new URLSearchParams(window.location.search);
+      var forceMobile = urlParams.get('view') === 'mobile' || sessionStorage.getItem('force_mobile') === 'true';
+
+      if (isDesktopWidth && isDesktopUA && !forceMobile) {
+        window.location.replace('index.html');
+      }
+    })();
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans + Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      padding-bottom: 84px;
+    }
+
+    .m-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(18, 21, 27, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .m-hero-box {
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    .m-hero-frame {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 200px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-card);
+      margin: 18px 0;
+      position: relative;
+    }
+
+    .m-hero-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .m-chip-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 8px;
+    }
+
+    .m-stat-pill {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      flex-shrink: 0;
+      text-align: left;
+    }
+
+    .m-stat-num {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .m-stat-label {
+      font-size: 0.65rem;
+      color: var(--muted-foreground);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .m-section-pad {
+      padding: 28px 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Sleek, Contained Mobile Fleet Cards (Never overflow screen) */
+    .mobile-car-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-card);
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .mobile-card-img {
+      position: relative;
+      width: 100%;
+      height: 165px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .mobile-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mobile-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(18, 21, 27, 0.90);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #fca5a5;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+    }
+
+    .mobile-card-content {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mobile-card-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-card-title-row h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--foreground);
+      margin: 0;
+    }
+
+    .mobile-tariff-tag {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    .mobile-tariff-tag small {
+      font-size: 0.68rem;
+      color: var(--muted-foreground);
+      font-weight: 400;
+    }
+
+    .mobile-specs-chip-row {
+      display: flex;
+      gap: 8px;
+      font-size: 0.74rem;
+      color: var(--muted-foreground);
+      align-items: center;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-car-desc {
+      font-size: 0.80rem;
+      color: var(--muted-foreground);
+      line-height: 1.45;
+      margin: 0;
+    }
+
+    .mobile-select-btn {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.84rem;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
+      transition: background 0.2s ease;
+    }
+
+    .mobile-select-btn:hover {
+      background: var(--primary-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-dot-pattern" aria-hidden="true"></div>
+
+  <!-- Mobile Header -->
+  <header class="m-header">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <div class="brand-icon-box" style="width: 32px; height: 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m7 6 5 5 5-5"></path><path d="m7 13 5 5 5-5"></path>
+        </svg>
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 1.05rem; line-height: 1.1;">Royal Cars</div>
+        <div style="font-family: var(--font-mono); font-size: 0.58rem; color: #f87171; text-transform: uppercase;">Shaikpet, Hyderabad</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 8px;">
+      <a href="tel:+918801256038" class="btn-shadcn-secondary" style="padding: 7px 12px; font-size: 0.80rem; border-radius: var(--radius-sm);">
+        <i data-lucide="phone"></i> Call
+      </a>
+      <a href="https://wa.me/918801256038?text=Hello%20Royal%20Cars%20Hyderabad%2C%20I%20want%20to%20check%20car%20rental%20availability." class="btn-shadcn-primary" style="padding: 7px 12px; font-size: 0.80rem; border-radius: var(--radius-sm);" target="_blank" rel="noopener">
+        <i data-lucide="message-square"></i> WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile Hero -->
+  <section class="m-hero-box">
+    <div class="hero-pill-announcement" style="margin-bottom: 12px;">
+      <span class="pill-tag">2026 Fleet</span>
+      <span>Shaikpet 24-Hour Dispatch</span>
+    </div>
+
+    <h1 style="font-size: 2.2rem; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 8px;">
+      Your Car.<br><span class="text-gradient-primary">Your Journey.</span>
+    </h1>
+
+    <p style="font-size: 0.90rem; color: var(--muted-foreground);">
+      Sanitized self-drive rentals in Hyderabad with transparent pricing & instant WhatsApp booking.
+    </p>
+
+    <div class="m-hero-frame">
+      <img src="assets/hero_suv.jpg" alt="Royal Cars Luxury Self Drive SUV Hyderabad" fetchpriority="high" />
+    </div>
+
+    <div class="m-chip-scroll">
+      <div class="m-stat-pill">
+        <span class="m-stat-num">4.4 ★</span>
+        <span class="m-stat-label">~610 Reviews</span>
+      </div>
+      <div class="m-stat-pill">
+        <span class="m-stat-num">24/7</span>
+        <span class="m-stat-label">Roadside Help</span>
+      </div>
+      <div class="m-stat-pill">
+        <span class="m-stat-num">₹0</span>
+        <span class="m-stat-label">Hidden Charges</span>
+      </div>
+      <div class="m-stat-pill">
+        <span class="m-stat-num">300 KM</span>
+        <span class="m-stat-label">Daily Allowance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Fleet Discovery -->
+  <section class="m-section-pad" id="mobile-fleet">
+    <div style="margin-bottom: 18px;">
+      <span class="section-label">Discovery Fleet</span>
+      <h2 style="font-size: 1.6rem; font-weight: 800;">Choose Your Car</h2>
+    </div>
+
+    <div class="m-chip-scroll" style="margin-bottom: 16px;">
+      <button class="mobile-filter-pill filter-chip active" data-category="all">All Vehicles</button>
+      <button class="mobile-filter-pill filter-chip" data-category="Hatchback">Hatchbacks</button>
+      <button class="mobile-filter-pill filter-chip" data-category="Sedan">Sedans</button>
+      <button class="mobile-filter-pill filter-chip" data-category="SUV">SUVs</button>
+      <button class="mobile-filter-pill filter-chip" data-category="Premium">Luxury</button>
+    </div>
+
+    <div id="mobile-fleet-list" style="display: flex; flex-direction: column; gap: 16px;"></div>
+  </section>
+
+  <!-- Mobile Calculator -->
+  <section class="m-section-pad" id="mobile-calculator">
+    <div style="margin-bottom: 18px;">
+      <span class="section-label">Transparent Pricing</span>
+      <h2 style="font-size: 1.6rem; font-weight: 800;">Tariff Calculator</h2>
+    </div>
+
+    <div class="calc-unified-box" style="padding: 20px; grid-template-columns: 1fr;">
+      <div>
+        <label class="calc-control-label" for="m-calc-car-select">Vehicle Class</label>
+        <select id="m-calc-car-select" class="calc-input-select" style="margin-bottom: 16px;"></select>
+
+        <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted-foreground); margin-bottom: 6px;">
+          <span>Duration</span>
+          <span id="m-calc-days-num" style="color: #fff; font-weight: 700;">3 Days</span>
+        </div>
+        <input type="range" id="m-calc-days-slider" class="slider-styled" min="1" max="30" value="3" style="margin-bottom: 16px;" />
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+          <div>
+            <label class="calc-control-label" for="m-calc-pickup">Pickup Date</label>
+            <input type="date" id="m-calc-pickup" class="calc-input-date" style="padding: 8px 10px; font-size: 0.84rem;" />
+          </div>
+          <div>
+            <label class="calc-control-label" for="m-calc-return">Return Date</label>
+            <input type="date" id="m-calc-return" class="calc-input-date" style="padding: 8px 10px; font-size: 0.84rem;" />
+          </div>
+        </div>
+
+        <div class="toggle-option-card" id="m-doorstep-toggle">
+          <div>
+            <div style="font-weight: 600; font-size: 0.84rem;">Doorstep City Delivery</div>
+            <div style="font-size: 0.70rem; color: var(--muted-foreground);">Handover & pickup at hotel/residence (+₹600)</div>
+          </div>
+          <div class="toggle-checkbox-visual">✓</div>
+        </div>
+
+        <div class="toggle-option-card" id="m-zerodep-toggle">
+          <div>
+            <div style="font-weight: 600; font-size: 0.84rem;">Zero-Dep Damage Waiver</div>
+            <div style="font-size: 0.70rem; color: var(--muted-foreground);">Covers minor road scratches (+₹350/day)</div>
+          </div>
+          <div class="toggle-checkbox-visual">✓</div>
+        </div>
+      </div>
+
+      <!-- Mobile Receipt Box -->
+      <div style="background: #0d1017; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; margin-top: 10px;">
+        <div style="font-size: 0.72rem; font-family: var(--font-mono); color: #f87171; text-transform: uppercase;" id="m-calc-car-summary">Range Rover Sport (3 Days)</div>
+        
+        <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-top: 8px; color: var(--muted-foreground);">
+          <span>Base Tariff</span>
+          <span id="m-calc-rate-row" style="font-family: var(--font-mono); color: #fff;">₹4,800 × 3 Days</span>
+        </div>
+        <div id="m-calc-discount-row" style="display: none; justify-content: space-between; font-size: 0.80rem; color: #4ade80; margin-top: 4px;">
+          <span>Duration Discount</span>
+          <span id="m-calc-discount-val" style="font-family: var(--font-mono);">-₹0</span>
+        </div>
+        <div id="m-calc-delivery-row" style="display: none; justify-content: space-between; font-size: 0.80rem; color: var(--muted-foreground); margin-top: 4px;">
+          <span>Doorstep Delivery</span>
+          <span style="font-family: var(--font-mono); color: #fff;">+₹600</span>
+        </div>
+        <div id="m-calc-zerodep-row" style="display: none; justify-content: space-between; font-size: 0.80rem; color: var(--muted-foreground); margin-top: 4px;">
+          <span>Zero-Dep Waiver</span>
+          <span style="font-family: var(--font-mono); color: #fff;">+₹1,050</span>
+        </div>
+
+        <div style="border-top: 1px solid var(--border); margin-top: 12px; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline;">
+          <span style="font-size: 0.74rem; font-family: var(--font-mono); color: var(--muted-foreground); text-transform: uppercase;">Estimated Total</span>
+          <span id="m-calc-total-hero" style="font-family: var(--font-mono); font-size: 1.8rem; font-weight: 800; color: #fff;">₹13,680</span>
+        </div>
+
+        <a id="m-whatsapp-book-btn" href="#" class="btn-shadcn-primary" style="width: 100%; justify-content: center; margin-top: 14px; padding: 12px; background: var(--whatsapp); color: #000;" target="_blank" rel="noopener">
+          <i data-lucide="message-circle"></i> Confirm on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile How It Works -->
+  <section class="m-section-pad">
+    <div style="margin-bottom: 18px;">
+      <span class="section-label">Quick Steps</span>
+      <h2 style="font-size: 1.6rem; font-weight: 800;">How It Works</h2>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div class="numbered-card" style="padding: 16px;">
+        <div class="card-numeral-watermark" style="font-size: 2.2rem; margin-bottom: 4px;">01</div>
+        <h4 style="font-size: 1.05rem; font-weight: 700;">Pick Your Car</h4>
+        <p style="font-size: 0.80rem; color: var(--muted-foreground);">Choose your preferred hatchback, sedan, or SUV.</p>
+      </div>
+      <div class="numbered-card" style="padding: 16px;">
+        <div class="card-numeral-watermark" style="font-size: 2.2rem; margin-bottom: 4px;">02</div>
+        <h4 style="font-size: 1.05rem; font-weight: 700;">Select Dates</h4>
+        <p style="font-size: 0.80rem; color: var(--muted-foreground);">Rent from 1 to 30 days with tiered discounts.</p>
+      </div>
+      <div class="numbered-card" style="padding: 16px;">
+        <div class="card-numeral-watermark" style="font-size: 2.2rem; margin-bottom: 4px;">03</div>
+        <h4 style="font-size: 1.05rem; font-weight: 700;">WhatsApp Document Verification</h4>
+        <p style="font-size: 0.80rem; color: var(--muted-foreground);">Send DL and ID for quick verification.</p>
+      </div>
+      <div class="numbered-card" style="padding: 16px;">
+        <div class="card-numeral-watermark" style="font-size: 2.2rem; margin-bottom: 4px;">04</div>
+        <h4 style="font-size: 1.05rem; font-weight: 700;">Drive Away</h4>
+        <p style="font-size: 0.80rem; color: var(--muted-foreground);">Collect keys at Shaikpet or receive doorstep delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mobile Hub Location -->
+  <section class="m-section-pad" id="mobile-location">
+    <div style="margin-bottom: 18px;">
+      <span class="section-label">Shaikpet Hub</span>
+      <h2 style="font-size: 1.6rem; font-weight: 800;">Location & Contact</h2>
+      <p style="font-size: 0.85rem; color: var(--muted-foreground);">Opposite D-Mart, Senore Colony / Aparna Senore Valley Villas, Shaikpet, Hyderabad 500096</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+      <a href="https://maps.app.goo.gl/QR3uc2cM3nbLBv82A" class="btn-shadcn-primary" style="justify-content: center; padding: 12px;" target="_blank" rel="noopener">
+        <i data-lucide="navigation"></i> Open Google Maps
+      </a>
+      <a href="tel:+918801256038" class="btn-shadcn-secondary" style="justify-content: center; padding: 12px;">
+        <i data-lucide="phone"></i> Call +91 88012 56038
+      </a>
+    </div>
+
+    <div style="background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px; font-size: 0.82rem; color: var(--muted-foreground);">
+      <div><strong>Public Reputation:</strong> 4.4 ★ on primary listing (~610 reviews) & 4.1 ★ on local city directory.</div>
+      <div style="margin-top: 4px;"><strong>Working Hours:</strong> 24-Hour Availability</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="padding: 24px 16px; border-top: 1px solid var(--border); text-align: center; font-size: 0.72rem; color: var(--muted-foreground); font-family: var(--font-mono);">
+    <div>© 2026 Royal Cars, Shaikpet, Hyderabad.</div>
+    <div style="margin-top: 4px;">Self-Drive Automotive Excellence</div>
+  </footer>
+
+  <!-- Persistent Mobile Sticky Action Dock -->
+  <aside class="mobile-action-dock">
+    <a href="tel:+918801256038" class="dock-action-btn btn-shadcn-secondary">
+      <i data-lucide="phone"></i> Call
+    </a>
+    <a href="https://wa.me/918801256038?text=Hello%20Royal%20Cars%20Hyderabad%2C%20I%20want%20to%20check%20car%20rental%20availability." class="dock-action-btn btn-shadcn-primary" style="background: var(--whatsapp); color: #000;" target="_blank" rel="noopener">
+      <i data-lucide="message-square"></i> WhatsApp
+    </a>
+  </aside>
+
+  <script src="js/pricing.js"></script>
+  <script src="js/mobile.js"></script>
+</body>
+</html>

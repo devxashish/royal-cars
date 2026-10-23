@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Royal Cars — 5 New Minimalist Real-Photo Themes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Syne:wght@700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --font-serif: 'Playfair Display', serif;
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'Space Grotesk', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0d13;
+      color: #f1f5f9;
+      font-family: var(--font-sans);
+      padding: 40px 20px 100px 20px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    
+    header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(229, 193, 88, 0.12);
+      border: 1px solid rgba(229, 193, 88, 0.3);
+      color: #e5c158;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #ffffff;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+    p.lead {
+      color: #94a3b8;
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+    }
+    .meta-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      color: #cbd5e1;
+    }
+    .meta-item { display: flex; align-items: center; gap: 8px; }
+
+    /* 5 Themes Layout */
+    .themes-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .theme-showcase {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .theme-showcase:hover {
+      transform: translateY(-4px);
+    }
+
+    .theme-banner-header {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .theme-banner-header h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .theme-tag {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .theme-body-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+    }
+    @media (max-width: 960px) {
+      .theme-body-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Live Mini Web UI Simulator inside each card */
+    .live-web-preview {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .car-visual-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.4);
+      aspect-ratio: 16 / 10;
+    }
+    .car-visual-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .car-visual-frame:hover img {
+      transform: scale(1.04);
+    }
+    .car-overlay-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+    .car-bottom-badge {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Interactive Simulation Card inside preview */
+    .mini-calc-demo {
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .calc-slider-val {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* Specs & Design Philosophy Panel */
+    .specs-column {
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
+    .palette-box h4 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+    .palette-strip {
+      display: flex;
+      gap: 10px;
+    }
+    .swatch {
+      flex: 1;
+      height: 48px;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      padding: 6px;
+      font-size: 0.65rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .features-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+    .feature-item i {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .select-theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    /* SPECIFIC THEME STYLING OVERRIDES */
+    
+    /* Theme 1: Atelier Emerald & Champagne */
+    #theme-1 {
+      background: #091210;
+      border-color: rgba(30, 86, 68, 0.4);
+    }
+    #theme-1 .theme-banner-header { background: #0c1714; }
+    #theme-1 .theme-tag { background: rgba(229,193,88,0.15); color: #e5c158; border: 1px solid rgba(229,193,88,0.3); }
+    #theme-1 .specs-column { background: #070e0c; }
+    #theme-1 .mini-calc-demo { background: rgba(30, 86, 68, 0.25); border: 1px solid rgba(229,193,88,0.3); }
+    #theme-1 .select-theme-btn { background: #e5c158; color: #091210; }
+    #theme-1 .select-theme-btn:hover { background: #f3d47d; }
+
+    /* Theme 2: Minimalist Warm Ivory & Espresso (Light Mode Elegance) */
+    #theme-2 {
+      background: #f7f4ed;
+      color: #1a1815;
+      border-color: #dfd9cb;
+    }
+    #theme-2 .theme-banner-header { background: #efebe2; border-color: #dfd9cb; }
+    #theme-2 .theme-banner-header h2 { color: #1a1815; }
+    #theme-2 .theme-tag { background: #1a1815; color: #f7f4ed; }
+    #theme-2 .specs-column { background: #ffffff; border-color: #dfd9cb; color: #2d2925; }
+    #theme-2 .mini-calc-demo { background: #ffffff; border: 1px solid #dfd9cb; }
+    #theme-2 .feature-item i { color: #c49a45; }
+    #theme-2 .select-theme-btn { background: #1a1815; color: #f7f4ed; }
+    #theme-2 .select-theme-btn:hover { background: #353029; }
+
+    /* Theme 3: Monaco Midnight Navy & Electric Gold */
+    #theme-3 {
+      background: #0a0f1d;
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+    #theme-3 .theme-banner-header { background: #0e1529; }
+    #theme-3 .theme-tag { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    #theme-3 .specs-column { background: #080c18; }
+    #theme-3 .mini-calc-demo { background: rgba(22, 33, 58, 0.6); border: 1px solid rgba(56, 189, 248, 0.3); }
+    #theme-3 .select-theme-btn { background: #38bdf8; color: #0a0f1d; }
+    #theme-3 .select-theme-btn:hover { background: #7dd3fc; }
+
+    /* Theme 4: Matte Carbon & Crimson Velocity */
+    #theme-4 {
+      background: #111215;
+      border-color: rgba(239, 68, 68, 0.35);
+    }
+    #theme-4 .theme-banner-header { background: #16181c; }
+    #theme-4 .theme-tag { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    #theme-4 .specs-column { background: #0d0e10; }
+    #theme-4 .mini-calc-demo { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); }
+    #theme-4 .select-theme-btn { background: #ef4444; color: #ffffff; }
+    #theme-4 .select-theme-btn:hover { background: #f87171; }
+
+    /* Theme 5: Obsidian Bronze & Sandstone VIP */
+    #theme-5 {
+      background: #14110e;
+      border-color: rgba(217, 119, 6, 0.35);
+    }
+    #theme-5 .theme-banner-header { background: #1a1612; }
+    #theme-5 .theme-tag { background: rgba(217, 119, 6, 0.15); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.3); }
+    #theme-5 .specs-column { background: #0e0c0a; }
+    #theme-5 .mini-calc-demo { background: rgba(217, 119, 6, 0.1); border: 1px solid rgba(217, 119, 6, 0.3); }
+    #theme-5 .select-theme-btn { background: #d97706; color: #ffffff; }
+    #theme-5 .select-theme-btn:hover { background: #f59e0b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge"><i data-lucide="crown"></i> Hallmark Editorial Design System</div>
+      <h1>Royal Cars Hyderabad — 5 New Minimalist Real-Photo Themes</h1>
+      <p class="lead">Crafted with authentic high-resolution automotive photography, eye-catching OKLCH color palettes, interactive pricing engines, and zero generic AI templates.</p>
+      <div class="meta-bar">
+        <div class="meta-item"><i data-lucide="phone"></i> <strong>+91 8801256038</strong></div>
+        <div class="meta-item"><i data-lucide="mail"></i> <strong>royalcarsrental@gmail.com</strong></div>
+        <div class="meta-item"><i data-lucide="map-pin"></i> <strong>Shaikpet, Hyderabad (500110)</strong></div>
+      </div>
+    </header>
+
+    <div class="themes-wrapper">
+
+      <!-- THEME 1: ATELIER DEEP EMERALD & CHAMPAGNE -->
+      <div class="theme-showcase" id="theme-1">
+        <div class="theme-banner-header">
+          <h2><i data-lucide="gem" style="color: #e5c158;"></i> Option 1: Deep British Racing Emerald & Champagne Gold</h2>
+          <span class="theme-tag">Atelier Luxe • Old-Money Prestige</span>
+        </div>
+        <div class="theme-body-grid">
+          <div class="live-web-preview">
+            <div class="car-visual-frame">
+              <img src="/car-1.jpg" alt="Rolls-Royce & Luxury Fleet">
+              <div class="car-overlay-badge" style="background: rgba(9,18,16,0.8); color: #e5c158; border: 1px solid rgba(229,193,88,0.3);">
+                ★ Wedding & VIP Special
+              </div>
+              <div class="car-bottom-badge" style="background: rgba(9,18,16,0.85); color: #ffffff;">
+                <span>Starting from</span> <strong style="color: #e5c158;">₹18,500/day</strong>
+              </div>
+            </div>
+            <div class="mini-calc-demo">
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.06em;">Interactive Days Slider</span>
+                <div class="calc-slider-val" style="color: #e5c158;">3 Days Selected <span style="font-size: 0.85rem; color: #cbd5e1;">(10% Off)</span></div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8;">Est. Quote</span>
+                <div class="calc-slider-val" style="color: #ffffff;">₹49,950</div>
+              </div>
+            </div>
+          </div>
+          <div class="specs-column">
+            <div class="palette-box">
+              <h4>Eye-Catching Color Palette</h4>
+              <div class="palette-strip">
+                <div class="swatch" style="background: #091210; color: #fff;">#091210</div>
+                <div class="swatch" style="background: #142823; color: #fff;">#142823</div>
+                <div class="swatch" style="background: #e5c158; color: #000;">#E5C158</div>
+                <div class="swatch" style="background: #25d366; color: #000;">#25D366</div>
+                <div class="swatch" style="background: #f1f5f9; color: #000;">#F1F5F9</div>
+              </div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item"><i data-lucide="check" style="color: #e5c158;"></i> <div><strong>Typography:</strong> Playfair Display (Headings) + Plus Jakarta Sans (Body)</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #e5c158;"></i> <div><strong>Per-Day Calculator:</strong> Glassmorphic slider with chauffeur toggle and refundable deposit terms.</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #e5c158;"></i> <div><strong>Aesthetic:</strong> Timeless luxury, Rolls-Royce & vintage wedding groom car flair.</div></div>
+            </div>
+            <button class="select-theme-btn" onclick="alert('You picked Option 1 (Deep Emerald & Champagne Gold)!')">Select Option 1</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 2: WARM ALABASTER IVORY & ESPRESSO (LIGHT MODE) -->
+      <div class="theme-showcase" id="theme-2">
+        <div class="theme-banner-header">
+          <h2><i data-lucide="feather" style="color: #c49a45;"></i> Option 2: Warm Alabaster Ivory & Cashmere Espresso (Editorial Light)</h2>
+          <span class="theme-tag">Editorial Swiss • Clean & Architectural</span>
+        </div>
+        <div class="theme-body-grid">
+          <div class="live-web-preview">
+            <div class="car-visual-frame">
+              <img src="/car-2.jpg" alt="BMW & Executive Sedan">
+              <div class="car-overlay-badge" style="background: rgba(255,255,255,0.9); color: #1a1815; border: 1px solid #dfd9cb;">
+                ★ Executive Self-Drive
+              </div>
+              <div class="car-bottom-badge" style="background: rgba(255,255,255,0.95); color: #1a1815; border: 1px solid #dfd9cb;">
+                <span>Starting from</span> <strong style="color: #c49a45;">₹8,500/day</strong>
+              </div>
+            </div>
+            <div class="mini-calc-demo">
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; letter-spacing: 0.06em;">Interactive Days Slider</span>
+                <div class="calc-slider-val" style="color: #1a1815;">5 Days Selected <span style="font-size: 0.85rem; color: #64748b;">(12% Off)</span></div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #64748b;">Est. Quote</span>
+                <div class="calc-slider-val" style="color: #c49a45;">₹37,400</div>
+              </div>
+            </div>
+          </div>
+          <div class="specs-column">
+            <div class="palette-box">
+              <h4>Eye-Catching Color Palette</h4>
+              <div class="palette-strip">
+                <div class="swatch" style="background: #f7f4ed; color: #000;">#F7F4ED</div>
+                <div class="swatch" style="background: #ffffff; color: #000;">#FFFFFF</div>
+                <div class="swatch" style="background: #c49a45; color: #fff;">#C49A45</div>
+                <div class="swatch" style="background: #1a1815; color: #fff;">#1A1815</div>
+                <div class="swatch" style="background: #64748b; color: #fff;">#64748B</div>
+              </div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item"><i data-lucide="check"></i> <div><strong>Typography:</strong> Architectural Serif + Clean Swiss Grotesk</div></div>
+              <div class="feature-item"><i data-lucide="check"></i> <div><strong>Per-Day Calculator:</strong> Clean horizontal day slider with real-time INR cost quote & WhatsApp instant checkout.</div></div>
+              <div class="feature-item"><i data-lucide="check"></i> <div><strong>Aesthetic:</strong> Ultra-clean light luxury, corporate fleet, trustworthy, easy reading outdoors on mobile.</div></div>
+            </div>
+            <button class="select-theme-btn" onclick="alert('You picked Option 2 (Warm Alabaster Ivory & Espresso)!')">Select Option 2</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 3: MONACO MIDNIGHT NAVY & ELECTRIC SKY -->
+      <div class="theme-showcase" id="theme-3">
+        <div class="theme-banner-header">
+          <h2><i data-lucide="zap" style="color: #38bdf8;"></i> Option 3: Monaco Midnight Navy & Electric Sky</h2>
+          <span class="theme-tag">Cyber Tech Luxury • App Experience</span>
+        </div>
+        <div class="theme-body-grid">
+          <div class="live-web-preview">
+            <div class="car-visual-frame">
+              <img src="/car-3.jpg" alt="Luxury SUV Range Rover & Defender">
+              <div class="car-overlay-badge" style="background: rgba(10,15,29,0.85); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3);">
+                ★ Luxury SUV & Outstation
+              </div>
+              <div class="car-bottom-badge" style="background: rgba(10,15,29,0.9); color: #ffffff;">
+                <span>Starting from</span> <strong style="color: #38bdf8;">₹12,000/day</strong>
+              </div>
+            </div>
+            <div class="mini-calc-demo">
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.06em;">Interactive Days Slider</span>
+                <div class="calc-slider-val" style="color: #38bdf8;">7 Days (Weekly Special)</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8;">Est. Quote</span>
+                <div class="calc-slider-val" style="color: #ffffff;">₹68,880 <span style="font-size: 0.75rem; color:#38bdf8;">(18% Off)</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="specs-column">
+            <div class="palette-box">
+              <h4>Eye-Catching Color Palette</h4>
+              <div class="palette-strip">
+                <div class="swatch" style="background: #0a0f1d; color: #fff;">#0A0F1D</div>
+                <div class="swatch" style="background: #16213a; color: #fff;">#16213A</div>
+                <div class="swatch" style="background: #38bdf8; color: #000;">#38BDF8</div>
+                <div class="swatch" style="background: #fbbf24; color: #000;">#FBBF24</div>
+                <div class="swatch" style="background: #f8fafc; color: #000;">#F8FAFC</div>
+              </div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item"><i data-lucide="check" style="color: #38bdf8;"></i> <div><strong>Typography:</strong> Space Grotesk (Tech Headings) + Plus Jakarta Sans (UI)</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #38bdf8;"></i> <div><strong>Per-Day Calculator:</strong> Dynamic live breakdown (Days + Zero Dep Insurance + Refundable Deposit).</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #38bdf8;"></i> <div><strong>Aesthetic:</strong> Modern Hitech City & Gachibowli self-drive rental app feel.</div></div>
+            </div>
+            <button class="select-theme-btn" onclick="alert('You picked Option 3 (Monaco Midnight Navy & Electric Sky)!')">Select Option 3</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 4: MATTE CARBON & CRIMSON VELOCITY -->
+      <div class="theme-showcase" id="theme-4">
+        <div class="theme-banner-header">
+          <h2><i data-lucide="flame" style="color: #ef4444;"></i> Option 4: Matte Carbon & Radiant Crimson Velocity</h2>
+          <span class="theme-tag">Bold High-Performance • Convoy Energy</span>
+        </div>
+        <div class="theme-body-grid">
+          <div class="live-web-preview">
+            <div class="car-visual-frame">
+              <img src="/car-4.jpg" alt="Sports Car & Performance Convoy">
+              <div class="car-overlay-badge" style="background: rgba(17,18,21,0.85); color: #ef4444; border: 1px solid rgba(239,68,68,0.3);">
+                ★ Sports Convoy & Thar
+              </div>
+              <div class="car-bottom-badge" style="background: rgba(17,18,21,0.9); color: #ffffff;">
+                <span>Starting from</span> <strong style="color: #ef4444;">₹9,500/day</strong>
+              </div>
+            </div>
+            <div class="mini-calc-demo">
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.06em;">Interactive Days Slider</span>
+                <div class="calc-slider-val" style="color: #ef4444;">2 Days (Weekend Trip)</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8;">Est. Quote</span>
+                <div class="calc-slider-val" style="color: #ffffff;">₹19,000</div>
+              </div>
+            </div>
+          </div>
+          <div class="specs-column">
+            <div class="palette-box">
+              <h4>Eye-Catching Color Palette</h4>
+              <div class="palette-strip">
+                <div class="swatch" style="background: #111215; color: #fff;">#111215</div>
+                <div class="swatch" style="background: #1c1f26; color: #fff;">#1C1F26</div>
+                <div class="swatch" style="background: #ef4444; color: #fff;">#EF4444</div>
+                <div class="swatch" style="background: #25d366; color: #000;">#25D366</div>
+                <div class="swatch" style="background: #ffffff; color: #000;">#FFFFFF</div>
+              </div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item"><i data-lucide="check" style="color: #ef4444;"></i> <div><strong>Typography:</strong> Syne / Bold Display + Plus Jakarta Sans</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #ef4444;"></i> <div><strong>Per-Day Calculator:</strong> Telemetry specs badge (BHP, 0-100, Transmission) with rapid WhatsApp booking.</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #ef4444;"></i> <div><strong>Aesthetic:</strong> Mahindra Thar, Fortuner Legender, Mustang, high-energy wedding convoy rentals.</div></div>
+            </div>
+            <button class="select-theme-btn" onclick="alert('You picked Option 4 (Matte Carbon & Radiant Crimson)!')">Select Option 4</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME 5: OBSIDIAN BRONZE & SANDSTONE VIP -->
+      <div class="theme-showcase" id="theme-5">
+        <div class="theme-banner-header">
+          <h2><i data-lucide="shield-check" style="color: #d97706;"></i> Option 5: Obsidian Bronze & Sandstone Amber VIP</h2>
+          <span class="theme-tag">Presidential VIP • Grand Chauffeur</span>
+        </div>
+        <div class="theme-body-grid">
+          <div class="live-web-preview">
+            <div class="car-visual-frame">
+              <img src="/car-5.jpg" alt="Mercedes & Presidential Chauffeur">
+              <div class="car-overlay-badge" style="background: rgba(20,17,14,0.85); color: #d97706; border: 1px solid rgba(217,119,6,0.3);">
+                ★ Chauffeur Airport VIP
+              </div>
+              <div class="car-bottom-badge" style="background: rgba(20,17,14,0.9); color: #ffffff;">
+                <span>Starting from</span> <strong style="color: #d97706;">₹14,000/day</strong>
+              </div>
+            </div>
+            <div class="mini-calc-demo">
+              <div>
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8; letter-spacing: 0.06em;">Interactive Days Slider</span>
+                <div class="calc-slider-val" style="color: #d97706;">4 Days + Chauffeur</div>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: #94a3b8;">Est. Quote</span>
+                <div class="calc-slider-val" style="color: #ffffff;">₹62,000</div>
+              </div>
+            </div>
+          </div>
+          <div class="specs-column">
+            <div class="palette-box">
+              <h4>Eye-Catching Color Palette</h4>
+              <div class="palette-strip">
+                <div class="swatch" style="background: #14110e; color: #fff;">#14110E</div>
+                <div class="swatch" style="background: #25201a; color: #fff;">#25201A</div>
+                <div class="swatch" style="background: #d97706; color: #000;">#D97706</div>
+                <div class="swatch" style="background: #fef3c7; color: #000;">#FEF3C7</div>
+                <div class="swatch" style="background: #f1f5f9; color: #000;">#F1F5F9</div>
+              </div>
+            </div>
+            <div class="features-list">
+              <div class="feature-item"><i data-lucide="check" style="color: #d97706;"></i> <div><strong>Typography:</strong> Playfair Display + Plus Jakarta Sans</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #d97706;"></i> <div><strong>Per-Day Calculator:</strong> Airport pickup selector, driver allowance breakdown, and security deposit details.</div></div>
+              <div class="feature-item"><i data-lucide="check" style="color: #d97706;"></i> <div><strong>Aesthetic:</strong> Dignitary, VIP delegation, RGIA airport transfer & grand wedding entries.</div></div>
+            </div>
+            <button class="select-theme-btn" onclick="alert('You picked Option 5 (Obsidian Bronze & Sandstone Amber VIP)!')">Select Option 5</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
